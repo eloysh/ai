@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kristina AI Agent</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">✨</div>
+        <div class="brandText">
+          <div class="title">Kristina AI Agent</div>
+          <div class="subtitle">Nano Banana • Freepik • Prompts</div>
+        </div>
+      </div>
+      <button id="btnRefresh" class="iconBtn" title="Обновить">⟳</button>
+    </header>
+
+    <main class="main">
+      <section id="gate" class="gate hidden">
+        <div class="card">
+          <div class="h">Доступ только после подписки</div>
+          <div class="p">Подпишись на канал и вернись сюда — я открою генерации и промты ✅</div>
+          <div class="row">
+            <button id="btnOpenChannel" class="btn">Подписаться</button>
+            <button id="btnRetry" class="btn btnGhost">Проверить</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="tabs" class="tabs">
+        <button class="tab active" data-tab="gen">Генерация</button>
+        <button class="tab" data-tab="prompts">Промты</button>
+        <button class="tab" data-tab="profile">Профиль</button>
+      </section>
+
+      <section id="panelGen" class="panel">
+        <div class="card">
+          <div class="grid2">
+            <div>
+              <label class="label">Модель</label>
+              <select id="engine" class="input">
+                <option value="nano_banana">🍌 Nano Banana (Gemini)</option>
+                <option value="freepik_mystic">🎨 Freepik Mystic</option>
+                <option value="freepik_seedream_edit">🪄 Photo → AI (Seedream Edit)</option>
+              </select>
+            </div>
+            <div>
+              <label class="label">Формат</label>
+              <select id="ratio" class="input">
+                <option value="social_story_9_16">9:16 (Stories/Reels)</option>
+                <option value="square_1_1">1:1 (Пост)</option>
+                <option value="widescreen_16_9">16:9 (YouTube)</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="photoBlock" class="photoBlock hidden">
+            <label class="label">Фото (для Photo → AI)</label>
+            <div class="row">
+              <input id="photo" type="file" accept="image/*" class="input" />
+              <button id="btnClearPhoto" class="btn btnGhost" type="button">Очистить</button>
+            </div>
+            <div id="photoHint" class="hint">Загрузи фото → напиши промт → получишь результат без искажений.</div>
+          </div>
+
+          <label class="label">Промт</label>
+          <textarea id="prompt" class="input textarea" rows="5" placeholder="Например: ultra realistic editorial portrait, soft daylight, clean background..."></textarea>
+
+          <div class="row">
+            <button id="btnGenerate" class="btn">Сгенерировать</button>
+            <button id="btnBuy" class="btn btnGhost">Купить ⭐️</button>
+          </div>
+
+          <div id="status" class="status hidden"></div>
+          <div id="result" class="result"></div>
+
+          <div class="divider"></div>
+
+          <div class="row">
+            <button id="btnShareBot" class="btn btnGhost">Поделиться ботом</button>
+            <button id="btnShareChannel" class="btn btnGhost">Поделиться каналом</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="panelPrompts" class="panel hidden">
+        <div class="card">
+          <div class="h">Свежие промты</div>
+          <div class="p">Я автоматически забираю новые промты из твоего канала ✅</div>
+          <div id="promptsList" class="list"></div>
+        </div>
+      </section>
+
+      <section id="panelProfile" class="panel hidden">
+        <div class="card">
+          <div class="h">Профиль</div>
+          <div id="me" class="p">Загрузка…</div>
+          <div class="divider"></div>
+          <div class="h">История</div>
+          <div id="history" class="list"></div>
+        </div>
+      </section>
+
+      <div id="toast" class="toast hidden"></div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

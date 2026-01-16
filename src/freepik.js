@@ -112,3 +112,5 @@ export function normalizeBase64(input = '') {
   const m = str.match(/^data:[^;]+;base64,(.+)$/);
   return m ? m[1] : str;
 }
+export const freepikSeedreamEdit = freepikSeedreamEditImage;
+

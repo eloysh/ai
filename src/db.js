@@ -92,7 +92,10 @@ export function initDb(sqlitePath) {
     setLastResult: db.prepare('UPDATE users SET last_result_url=? WHERE user_id=?'),
 
     insertPrompt: db.prepare('INSERT INTO prompts (title, text, message_id, created_at) VALUES (?, ?, ?, ?)'),
-    listPrompts: db.prepare('SELECT id, COALESCE(title, "") as title, text, created_at FROM prompts ORDER BY id DESC LIMIT ?'),
+   listPrompts: db.prepare(
+  "SELECT id, COALESCE(title, '') AS title, text, created_at FROM prompts ORDER BY id DESC LIMIT ?"
+),
+
 
     insertGen: db.prepare(`
       INSERT INTO generations (user_id, engine, prompt, aspect_ratio, task_id, status, result_url, created_at)
